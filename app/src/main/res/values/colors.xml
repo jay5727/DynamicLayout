@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color>
+    <color name="Actionbar">#14a895</color>
+    <color name="ButtonBackColor">#14a895</color>
+    <color name="ButtonClickColor">#a9d1cb</color>
+    <color name="ButtonTextColor">#ffffff</color>
+    <color name="textHeadingColor">#000000</color>
+
+    <color name="bgcolor">#E0F2F1</color>
+    <color name="GridView_back">#ffffff</color>
+    <color name="btnColor">#01CDCC</color>
+
+    <color name="Spinner_back">#efeded</color>
+    <color name="QECDashnoardBgColor">#d6d8d6</color>
+    <color name="PrtitionColor">#b2b2b2</color>
+    <color name="ProgressColor">#1eaf50</color>
+
+    <color name="black">#000000</color>
+</resources>
