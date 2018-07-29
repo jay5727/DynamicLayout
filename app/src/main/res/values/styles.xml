@@ -9,9 +9,9 @@
     </style>
 
     <style name="CardViewStyle" parent="CardView">
-        <item name="android:layout_marginTop">15dp</item>
-        <item name="android:elevation">10dp</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:elevation">5dp</item>
+        <item name="android:padding">5dp</item>
         <item name="cardBackgroundColor">@color/white</item>
         <item name="cardCornerRadius">10dp</item>
         <item name="cardElevation">5dp</item>

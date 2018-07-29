@@ -60,22 +60,27 @@ public class RuntimeInflaterAdapter extends RecyclerView.Adapter<RuntimeInflater
             }
         });*/
         if (type == 0) {
-            // if (!items.get(position).isCompleted()) {
-            holder.cv.setId(items.get(position).getResIdCardView());
-            holder.et.setId(items.get(position).getResIdEditText());
-            holder.et.setHint(items.get(position).getHint());
-            holder.et.setText(items.get(position).getUserText());
-            holder.et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (holder.et.getText().toString().length() > 0 && !hasFocus) {
-                        items.get(position).setUserText(holder.et.getText().toString());
-                        items.get(position).setCompleted(true);
-                        slideToRight(holder.cv);
+            if (!items.get(position).isCompleted())
+            {
+                holder.cv.setId(items.get(position).getResIdCardView());
+                holder.et.setId(items.get(position).getResIdEditText());
+                holder.et.setHint(items.get(position).getHint());
+                holder.et.setText(items.get(position).getUserText());
+                holder.et.setOnFocusChangeListener(new View.OnFocusChangeListener()
+                {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (holder.et.getText().toString().length() > 0 && !hasFocus) {
+                            items.get(position).setUserText(holder.et.getText().toString());
+                            items.get(position).setCompleted(true);
+                            slideToRight(holder.cv);
+                        }
                     }
-                }
-            });
-            // }
+                });
+            }
+            else {
+                holder.cv.setVisibility(View.GONE);
+            }
         } else {
             if (items.get(position).isCompleted()) {
                 holder.cv.setId(items.get(position).getResIdCardView());
@@ -92,6 +97,8 @@ public class RuntimeInflaterAdapter extends RecyclerView.Adapter<RuntimeInflater
                         }
                     }
                 });
+            } else {
+                holder.cv.setVisibility(View.GONE);
             }
         }
     }
