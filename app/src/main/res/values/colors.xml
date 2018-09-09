@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#E76235</color>
+    <color name="colorPrimaryDark">#CF5931</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="white">#ffffff</color>
-    <color name="Actionbar">#14a895</color>
+    <color name="Actionbar">#E76235</color>
     <color name="ButtonBackColor">#14a895</color>
     <color name="ButtonClickColor">#a9d1cb</color>
     <color name="ButtonTextColor">#ffffff</color>
@@ -21,4 +21,6 @@
     <color name="ProgressColor">#1eaf50</color>
 
     <color name="black">#000000</color>
+    <color name="greyishwhite">#EDEDED</color>
+
 </resources>

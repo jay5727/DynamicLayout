@@ -8,7 +8,6 @@
 
     <LinearLayout
         android:id="@+id/l1"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,14 +16,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Current" />
+            android:background="@drawable/tab_background_bottom_orange_line"
+            android:text="Current"
+            android:textAllCaps="false" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Completed" />
+            android:background="@color/white"
+            android:text="Completed"
+            android:textAllCaps="false"
+            android:textColor="#4D4D4D" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -32,11 +36,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/l1"
-        android:background="#E0F2F1"
-        android:paddingBottom="10dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="10dp"
-        android:scrollbars="vertical" />
+        android:background="#F2F2F2"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:textColor="#4D4D4D" />
 
 </RelativeLayout>
