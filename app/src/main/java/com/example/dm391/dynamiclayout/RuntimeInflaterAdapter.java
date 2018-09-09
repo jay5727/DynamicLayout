@@ -90,10 +90,22 @@ public class RuntimeInflaterAdapter extends RecyclerView.Adapter<RuntimeInflater
                             items.get(position).setUserText("");
                             items.get(position).setCompleted(false);
                             slideToLeft(holder.cv);
-                        } else //if text was changed by user
+                        } else //if text was changed by user in completed
                         {
                             items.get(position).setUserText(holder.et.getText().toString());
                         }
+                    }
+                });
+                holder.et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                        if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                            if (holder.et.getText().toString().length() == 0) {
+                                items.get(position).setUserText("");
+                                items.get(position).setCompleted(false);
+                                slideToLeft(holder.cv);
+                            }
+                        }
+                        return false;
                     }
                 });
             } else {

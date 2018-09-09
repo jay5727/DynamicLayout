@@ -51,7 +51,8 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
         Log.i("TAG",json.toString());
         int x= 5;
 
-        recyclerView.setAdapter(new RuntimeInflaterAdapter(type, returnViews()));
+        //recyclerView.setAdapter(new RuntimeInflaterAdapter(type, returnViews()));
+        recyclerView.setAdapter(mAdapter);
         //mAdapter.notifyDataSetChanged();
 
     }

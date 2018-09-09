@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.example.dm391.dynamiclayout.DynamicActivity">
 
     <LinearLayout
@@ -35,10 +37,22 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/btnSave"
         android:layout_below="@+id/l1"
         android:background="#F2F2F2"
+        android:clipToPadding="false"
         android:padding="5dp"
         android:scrollbars="vertical"
         android:textColor="#4D4D4D" />
 
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/changebtn"
+        android:text="SAVE"
+        android:textAllCaps="true"
+        android:textColor="@color/white" />
 </RelativeLayout>
