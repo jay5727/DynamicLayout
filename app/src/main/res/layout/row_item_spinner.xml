@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="5dp"
+            app:ms_alignLabels="false"
+            app:ms_arrowColor="@color/spDropdwnICon"
+            app:ms_arrowSize="@dimen/spIconsize"
+            app:ms_baseColor="@color/spUnderlinecolor"
+            app:ms_dropDownHintView="@layout/spinner_dropdown"
+            app:ms_enableErrorLabel="true"
+            app:ms_enableFloatingLabel="true"
+            app:ms_errorColor="@color/red_error"
+            app:ms_floatingLabelColor="@color/spTextflotinglabelColor"
+            app:ms_floatingLabelText="Tenure(in years)"
+            app:ms_highlightColor="@color/TextcolorFocused"
+            app:ms_hint="Select Tenure(in years)"
+            app:ms_hintColor="@color/spTextHintColor"
+            app:ms_hintTextSize="@dimen/spHintTextSize"
+            app:ms_hintView="@layout/spinner_item"
+            app:ms_multiline="false"
+            app:ms_thickness="1dp" />
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

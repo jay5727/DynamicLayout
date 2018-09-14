@@ -23,4 +23,14 @@
     <color name="black">#000000</color>
     <color name="greyishwhite">#EDEDED</color>
 
+    <color name="spDropdwnICon">#969696</color>
+    <color name="spUnderlinecolor">#c1c1c1</color>
+    <color name="red_error">#ffff4444</color>
+    <color name="spTextflotinglabelColor">#919191</color>
+    <color name="spdropdownitemcolor">#383838</color>
+    <color name="TextcolorFocused">#14a895</color>
+    <color name="spTextHintColor">#969696</color>
+
+
+
 </resources>

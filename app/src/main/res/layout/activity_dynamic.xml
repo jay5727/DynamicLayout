@@ -36,7 +36,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/btnSave"
         android:layout_below="@+id/l1"
         android:background="#F2F2F2"
@@ -44,6 +44,16 @@
         android:padding="5dp"
         android:scrollbars="vertical"
         android:textColor="#4D4D4D" />
+
+    <!--<RelativeLayout
+        android:id="@+id/relLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnSave"
+        android:layout_below="@+id/l1"
+        android:visibility="visible">
+
+    </RelativeLayout>-->
 
     <Button
         android:id="@+id/btnSave"

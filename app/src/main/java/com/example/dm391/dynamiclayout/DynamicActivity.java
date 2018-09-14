@@ -5,51 +5,63 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
-public class DynamicActivity extends AppCompatActivity implements View.OnClickListener {
+public class DynamicActivity extends AppCompatActivity implements View.OnClickListener, RuntimeInflaterAdapter.RecyclerViewClickListener
+        //,SwipeLinearLayout.OnSwipeListener
+        //View.OnTouchListener
+{
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     RuntimeInflaterAdapter mAdapter;
     Button button1, button2;
+    RelativeLayout relLay;
+
     int type = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dynamic);
-
+        //findViewById(R.id.l1).setOnTouchListener(new SwipeLinearLayout(this));
+        //relLay = (RelativeLayout) findViewById(R.id.relLay);
+        //relLay.setOnTouchListener(this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        //recyclerView.setOnTouchListener(this);
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
-        //HomelayoutManager = new GridLayoutManager(this, 1);
 
-        // recyclerView.setLayoutManager(HomelayoutManager);
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         //recyclerView.setHasFixedSize(false);
         //recyclerView.setNestedScrollingEnabled(false);
-        mAdapter = new RuntimeInflaterAdapter(type, returnViews());
+        mAdapter = new RuntimeInflaterAdapter(this, type, prepareForm(), this);
 
 
 
-        Gson gson = new Gson();
+       /* Gson gson = new Gson();
         String json =gson.toJson(returnViews());
         Log.i("TAG",json.toString());
-        int x= 5;
+        int x= 5;*/
 
         //recyclerView.setAdapter(new RuntimeInflaterAdapter(type, returnViews()));
         recyclerView.setAdapter(mAdapter);
@@ -58,7 +70,7 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    private List<CustomView> returnViews() {
+   /* private List<CustomView> returnViews() {
         return Arrays.asList(
                 new CustomView(1, 1, "Enter 1", false),
                 new CustomView(2, 2, "Enter 2", false),
@@ -72,7 +84,7 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
                 new CustomView(10, 10, "Enter 10", false)
 
         );
-    }
+    }*/
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -82,7 +94,7 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
                 hideSoftKeyboard(findViewById(R.id.l1));
                 type = 0;//CURRENT
                 setBackgroundToButtons(type);
-                recyclerView.setAdapter(new RuntimeInflaterAdapter(type, mAdapter.items));
+                recyclerView.setAdapter(new RuntimeInflaterAdapter(this, type, mAdapter.items, this));
                 mAdapter.notifyDataSetChanged();
                 break;
 
@@ -90,7 +102,7 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
                 hideSoftKeyboard(findViewById(R.id.l1));
                 type = 1;//COMPLETED
                 setBackgroundToButtons(type);
-                recyclerView.setAdapter(new RuntimeInflaterAdapter(type, mAdapter.items));
+                recyclerView.setAdapter(new RuntimeInflaterAdapter(this, type, mAdapter.items, this));
                 mAdapter.notifyDataSetChanged();
                 break;
         }
@@ -113,4 +125,117 @@ public class DynamicActivity extends AppCompatActivity implements View.OnClickLi
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
+
+    public List<CustomView> prepareForm() {
+        try {
+            List<CustomView> viewList = new ArrayList<>();
+            InputStream stream = getAssets().open("data.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+            StringBuilder builder = new StringBuilder();
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+            String data = builder.toString();
+            viewList = new Gson().fromJson(data, new TypeToken<List<CustomView>>() {
+            }.getType());
+            return viewList;
+        } catch (Exception e) {
+            //java.lang.IllegalStateException: Expected BEGIN_ARRAY but was BEGIN_OBJECT at line 1 column 2 path $
+            //dont keep root key...
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    static final int MIN_DISTANCE = 100;// TODO change this runtime based on screen resolution. for 1920x1080 is to small the 100 distance
+    private float downX, downY, upX, upY;
+    static final String logTag = "ActivitySwipeDetector";
+
+   /* public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN: {
+                downX = event.getX();
+                downY = event.getY();
+                return true;
+            }
+            case MotionEvent.ACTION_UP: {
+                upX = event.getX();
+                upY = event.getY();
+
+                float deltaX = downX - upX;
+                float deltaY = downY - upY;
+
+                // swipe horizontal?
+                if (Math.abs(deltaX) > MIN_DISTANCE) {
+                    // left or right
+                    if (deltaX < 0) {
+                        this.onLeftToRightSwipe();
+                        return true;
+                    }
+                    if (deltaX > 0) {
+                        this.onRightToLeftSwipe();
+                        return true;
+                    }
+                } else {
+                    Log.i(logTag, "Swipe was only " + Math.abs(deltaX) + " long horizontally, need at least " + MIN_DISTANCE);
+                    // return false; // We don't consume the event
+                }
+
+                // swipe vertical?
+                if (Math.abs(deltaY) > MIN_DISTANCE) {
+                    // top or down
+                    if (deltaY < 0) {
+                        this.onTopToBottomSwipe();
+                        return true;
+                    }
+                    if (deltaY > 0) {
+                        this.onBottomToTopSwipe();
+                        return true;
+                    }
+                } else {
+                    Log.i(logTag, "Swipe was only " + Math.abs(deltaX) + " long vertically, need at least " + MIN_DISTANCE);
+                    // return false; // We don't consume the event
+                }
+
+                return false; // no swipe horizontally and no swipe vertically
+            }// case MotionEvent.ACTION_UP:
+        }
+        return false;
+    }*/
+
+    public void onRightToLeftSwipe() {
+
+    }
+
+/*    public void onLeftToRightSwipe() {
+        hideSoftKeyboard(findViewById(R.id.l1));
+        type = 0;//CURRENT
+        setBackgroundToButtons(type);
+        recyclerView.setAdapter(new RuntimeInflaterAdapter(this, type, mAdapter.items));
+        mAdapter.notifyDataSetChanged();
+    }
+
+    public void onTopToBottomSwipe() {
+        hideSoftKeyboard(findViewById(R.id.l1));
+        type = 1;//COMPLETED
+        setBackgroundToButtons(type);
+        recyclerView.setAdapter(new RuntimeInflaterAdapter(this, type, mAdapter.items));
+        mAdapter.notifyDataSetChanged();
+    }*/
+
+    public void onBottomToTopSwipe() {
+
+    }
+
+    @Override
+    public void onClick() {
+        recyclerView.setAdapter(new RuntimeInflaterAdapter(this, 0, mAdapter.items, this));
+        mAdapter.notifyDataSetChanged();
+    }
+
+   /* @Override
+    public void onSwipeLeft() {
+
+    }*/
 }

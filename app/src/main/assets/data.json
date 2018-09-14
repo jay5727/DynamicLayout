@@ -1,0 +1,117 @@
+[
+  {
+    "viewType": 1,
+    "hint": "Enter 1",
+    "isCompleted": false,
+    "resIdCardView": 1,
+    "resId": 1
+  },
+  {
+    "viewType": 1,
+    "hint": "Enter 2",
+    "isCompleted": false,
+    "resIdCardView": 2,
+    "resId": 2
+  },
+  {
+    "viewType": 2,
+    "hint": "Gender",
+    "isCompleted": false,
+    "resId": 3,
+    "index": -1,
+    "items": [
+      "Male",
+      "Female"
+    ]
+   /* ,"child": [
+      {
+        "viewType": 1,
+        "hint": "Enter 2",
+        "isCompleted": false,
+        "resIdCardView": 2,
+        "resId": 2
+      },
+      {
+        "viewType": 1,
+        "hint": "Enter 2",
+        "isCompleted": false,
+        "resIdCardView": 2,
+        "resId": 2
+      }
+    ]*/
+  },
+  {
+    "viewType": 1,
+    "isHidden": "true",
+    "parentId": "3",
+    "hint": "Enter Land Revenue Record Number",
+    "isCompleted": false,
+    "resIdCardView": 31,
+    "resId": 31
+  },
+  {
+    "viewType": 1,
+    "isHidden": "true",
+    "parentId": "3",
+    "hint": "Enter Land Record Updation Date",
+    "isCompleted": false,
+    "resIdCardView": 32,
+    "resId": 32
+  },
+  {
+    "viewType": 3,
+    "hint": "City",
+    "isCompleted": false,
+    "resIdCardView": 4,
+    "index": -1,
+    "items": [
+      "Pune",
+      "Nagpur",
+      "Nashik",
+      "Vasai-Virar"
+    ],
+    "resId": 4
+  },
+  {
+    "viewType": 1,
+    "hint": "Enter 5",
+    "isCompleted": false,
+    "resIdCardView": 5,
+    "resId": 5
+  },
+  {
+    "viewType": 1,
+    "hint": "Enter 6",
+    "isCompleted": false,
+    "resIdCardView": 6,
+    "resId": 6
+  },
+  {
+    "viewType": 1,
+    "hint": "Enter 7",
+    "isCompleted": false,
+    "resIdCardView": 7,
+    "resId": 7
+  },
+  {
+    "viewType": 1,
+    "hint": "Enter 8",
+    "isCompleted": false,
+    "resIdCardView": 8,
+    "resId": 8
+  },
+  {
+    "viewType": 1,
+    "hint": "Enter 9",
+    "isCompleted": false,
+    "resIdCardView": 9,
+    "resId": 9
+  },
+  {
+    "viewType": 1,
+    "hint": "Enter 10",
+    "isCompleted": false,
+    "resIdCardView": 10,
+    "resId": 10
+  }
+]
